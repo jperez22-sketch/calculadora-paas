@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Cloud - PaaS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #e8f0ff, #f8fbff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background: white;
+            width: 390px;
+            padding: 32px;
+            border-radius: 18px;
+            box-shadow: 0 10px 35px rgba(0,0,0,.12);
+        }
+        h1 { margin-top: 0; color: #1f3c88; }
+        p { color: #555; }
+        input, select, button {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 9px;
+            border: 1px solid #ccc;
+            font-size: 15px;
+        }
+        button {
+            background: #1f3c88;
+            color: white;
+            border: 0;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .resultado {
+            margin-top: 20px;
+            padding: 14px;
+            background: #eef5ff;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+        .error {
+            margin-top: 20px;
+            padding: 14px;
+            background: #ffecec;
+            color: #a00000;
+            border-radius: 10px;
+        }
+        .tag {
+            display: inline-block;
+            padding: 5px 9px;
+            background: #e7edff;
+            color: #1f3c88;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <span class="tag">PaaS · Google Cloud Run</span>
+        <h1>Calculadora Cloud</h1>
+        <p>Aplicación web desplegada en la nube mediante una plataforma PaaS.</p>
+
+        <form method="POST">
+            <input type="number" step="any" name="numero1" placeholder="Primer número" required>
+            <input type="number" step="any" name="numero2" placeholder="Segundo número" required>
+
+            <select name="operacion">
+                <option value="suma">Suma</option>
+                <option value="resta">Resta</option>
+                <option value="multiplicacion">Multiplicación</option>
+                <option value="division">División</option>
+            </select>
+
+            <button type="submit">Calcular</button>
+        </form>
+
+        {% if resultado is not none %}
+            <div class="resultado">Resultado: {{ resultado }}</div>
+        {% endif %}
+
+        {% if error %}
+            <div class="error">{{ error }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>
